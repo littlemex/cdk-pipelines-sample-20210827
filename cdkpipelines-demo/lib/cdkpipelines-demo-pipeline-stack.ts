@@ -1,6 +1,7 @@
 import * as codepipeline from '@aws-cdk/aws-codepipeline';
 import * as codepipeline_actions from '@aws-cdk/aws-codepipeline-actions';
 import { Construct, SecretValue, Stack, StackProps } from '@aws-cdk/core';
+//import { Construct, SecretValue, Stack, StackProps, CfnOutput } from '@aws-cdk/core';
 import { CdkPipeline, SimpleSynthAction } from "@aws-cdk/pipelines";
 import { CdkpipelinesDemoStage } from './cdkpipelines-demo-stage';
 
@@ -12,6 +13,7 @@ export class CdkpipelinesDemoPipelineStack extends Stack {
     super(scope, id, props);
 
     const sourceArtifact = new codepipeline.Artifact();
+    //new CfnOutput(this, 'sourceArtifact', {value: sourceArtifact.bucketName});
     const cloudAssemblyArtifact = new codepipeline.Artifact();
     const oauth = SecretValue.secretsManager('github-token2');
     const pipeline = new CdkPipeline(this, 'Pipeline', {
